@@ -1,0 +1,11 @@
+parameters:
+        hmp_assetic.cssdump.filter.class: Hmp\AsseticBundle\Filter\CssDumpFilter
+
+services:
+    hmp_assetic.cssdump.filter:
+        class: %hmp_assetic.cssdump.filter.class%
+        arguments:
+            - "@kernel"
+            - "@assetic.asset_factory"
+        tags:
+          - { name: assetic.filter, alias: cssdump }
