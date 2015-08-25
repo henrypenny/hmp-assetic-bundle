@@ -1,0 +1,32 @@
+{
+  "name": "hmp/assetic-bundle",
+  "type": "symfony-bundle",
+  "description": "HMP AsseticBundle",
+  "keywords": ["Assetic filter Symfony 2"],
+  "homepage": "https://github.com/henrypenny/hmp-assetic-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Henry Penny",
+      "email": "henrypenny@hotmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.2",
+    "symfony/framework-bundle": "~2.3",
+    "symfony/assetic-bundle": "~2"
+  },
+  "require-dev": {
+    "symfony/yaml": "~2.3"
+  },
+  "suggest": {
+  },
+  "autoload": {
+    "psr-4": { "Hmp\\AsseticBundle\\": "" }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.0.x-dev"
+    }
+  }
+}
