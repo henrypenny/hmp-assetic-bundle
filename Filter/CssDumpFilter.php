@@ -110,7 +110,7 @@ class CssDumpFilter extends BaseCssFilter
             }
 
             $originalAsset = $path . $url;
-            $originalAsset = reset(explode('?', $originalAsset));
+            $originalAsset = reset(preg_split("/[#?]/", $originalAsset));
 
             $rootDir = $this->kernel->getRootDir();
             $rootDir = substr($rootDir, 0, -3);
@@ -125,18 +125,14 @@ class CssDumpFilter extends BaseCssFilter
             $fileName = $assetName . '_' . array_pop($targetParts);
             array_push($targetParts, $fileName);
             $targetAssetPath = implode('/', $targetParts);
-            $targetAssetPath = reset(explode('?', $targetAssetPath));
+            $targetAssetPath = reset(preg_split("/[#?]/", $targetAssetPath));
 
             $urlParts = explode('/', $matches['url']);
             array_pop($urlParts);
             array_push($urlParts, $fileName);
             $urlNew = implode('/', $urlParts);
 
-            $urlNew = reset(explode('?', $urlNew));
-
-
             if (!is_dir($dir = dirname($targetAssetPath))) {
-
                 if (false === @mkdir($dir, 0777, true)) {
                     throw new \RuntimeException('Unable to create directory '.$dir);
                 }
@@ -148,6 +144,7 @@ class CssDumpFilter extends BaseCssFilter
             }
             catch(\Exception $e) {
                 echo 'WARNING: ' . $e->getMessage();
+
             }
             if (false === @file_put_contents($targetAssetPath, $contents)) {
                 throw new \RuntimeException('Unable to write file ' . $targetAssetPath);
